@@ -35,7 +35,7 @@ document.onkeyup = function(event) {
     var userGuess = event.key;
     remaining--;
     yourGuessesSoFar.push(userGuess);
-    var currentGuesses();
+    currentGuesses();
     guessesRemaining();
     if (left > 0) {
         if (userGuess === computerLetter) {
