@@ -8,15 +8,17 @@ var remaining = 9;
 var guesses = 9;
 var computerLetter;
 var yourGuessesSoFar = [];
+var computerLetter;
 
 
 var letterGenerate = function () {
-    var computerLetter = options[Math.floor(Math.random()*options.length)];
-    console.log(computerGuess);
+    computerLetter = options[Math.floor(Math.random()*26)];   
+    console.log(computerLetter);
 }
 
+
 var currentGuesses = function() {
-    document.getElementById("guesses").innerHTML = "Your Guesses so Far: " + yourGuessesSoFar.join(",");
+    document.getElementById("guesses").textContent = "Your Guesses so Far: " + yourGuessesSoFar;
 }
 
 var guessesRemaining = function() {
@@ -24,10 +26,9 @@ var guessesRemaining = function() {
 }
 
 var startNewGame = function() {
+    letterGenerate();
     lettersGuessed = [];
     remaining = 9;
-    letterGenerate();
-    currentGuesses();
     guessesRemaining();
 }
 
@@ -37,7 +38,7 @@ document.onkeyup = function(event) {
     yourGuessesSoFar.push(userGuess);
     currentGuesses();
     guessesRemaining();
-    if (left > 0) {
+    if (remaining > 0) {
         if (userGuess === computerLetter) {
             wins++;
             document.getElementById("wins").innerHTML = "Wins:" + wins;
@@ -46,7 +47,7 @@ document.onkeyup = function(event) {
     
     }
 
-    else if (left === 0) {
+    else if (remaining === 0) {
         losses ++;
         document.getElementById("losses").innerHTML = "Losses: " + losses;
         startNewGame();
